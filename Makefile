@@ -9,7 +9,7 @@ CPP_FILES =	openambit_cli.cpp \
 OBJ_FILES := $(CPP_FILES:.cpp=.o)
 
 CFLAGS  = -Wall -pedantic -std=c++11 -I./libmovescount/ -I./libmovescount/log/ -I./libs/include -L./libs/lib64
-LD_FLAGS="-Wl,-rpath,./libs/lib64"
+LD_FLAGS="-Wl,-rpath,$(shell pwd)/libs/lib64"
 QT_LIBS = $(shell pkg-config --cflags --libs QtCore QJson ) -lz -lambit
 
 all: $(PROJECT)
