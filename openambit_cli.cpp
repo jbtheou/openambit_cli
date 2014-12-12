@@ -104,11 +104,13 @@ int main(int argc, char* argv[]) {
 				fstat(fileno(gps_file), &buf);
 				gps_len = buf.st_size*sizeof(char);
 				gps_data = (uint8_t*) malloc(gps_len);
+				fread(gps_data,gps_len,1,gps_file);
 				ret = libambit_gps_orbit_write(ambit_object,
 								gps_data,
 								gps_len);
 				std::cout << (ret ? "Error" : "Up to date");
 				fclose(gps_file);
+				free(gps_data);
 				break;
 			case 't':
 				current_time = time(NULL);
